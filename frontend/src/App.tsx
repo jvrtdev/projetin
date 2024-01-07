@@ -1,34 +1,52 @@
 import { useState } from "react"
+import {Formik, Form, Field, ErrorMessage } from 'formik';
+import * as yup from 'yup';
+import axios from "axios";
+import { json } from "react-router-dom";
 
+interface MyFormValues {
+  login: string;
+  password: string;
+}
 
 export default function App() {
+  const [ data, setData ] = useState<JSON>()
 
+  const initialValues: MyFormValues = {
+    login: '',
+    password: ''
+  }
 
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-  
-  const data = {
-      email: email,
-      password: password
-    }
+  const handleClickLogin = (values: any) => setData(values)
+
+  axios.post('http://localhost:3000/user', JSON.stringify(data))
+  .then((response) => console.log(response) )
+  .catch((error) => console.error('Deu ruim menor', error))
   return (
     <div>
-        <form>
-          <label htmlFor="email">Email</label>
-          <input type="email" 
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="border"
-          />
-          <label htmlFor="password">Senha</label>
-          <input type="password" 
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="border"
-          />
+        <h1>Login</h1>
+        <Formik
+        initialValues={initialValues}
+        onSubmit={handleClickLogin}
+        >
+          <Form>
 
-          <button type="submit">Enviar</button>
-        </form>
+            <Field name="login" placeholder="Login"></Field>
+            <ErrorMessage 
+            component="span"
+            name="login"
+
+            />
+            <Field name="password" placeholder="Senha"></Field>
+            <ErrorMessage 
+            component="span"
+            name="password"
+            />
+
+            <button type="submit" >Login</button>
+          </Form>
+
+        </Formik>
     </div>
   )
 }
