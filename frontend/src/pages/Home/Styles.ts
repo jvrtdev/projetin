@@ -1,9 +1,28 @@
 import styled, {keyframes} from "styled-components";
 
+const InOut = keyframes`
+    from  {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: initial;
+        transform: initial;
+        
+    }
+`
+const SwitchSide = keyframes`
+    from {
+
+    }
+    to{
+
+    }
+`
+
 interface SwitchButtonProps {
     isFalse: boolean;
   }
-
 
 export const TitleOrange = styled.h1`
     font-size: 64px;
@@ -40,6 +59,7 @@ export const FormArea = styled.form`
     padding: 0px 20px 0px 20px;
     display: flex;
     flex-direction: column;
+    animation: ${InOut} 0.5s ease-in-out;
 
 `
 
@@ -109,7 +129,7 @@ export const SwitchButtonLogin = styled.div<SwitchButtonProps>`
     justify-content: center;
     background-color: ${(props) => (props.isFalse ? '#027333' : '#fff')};
     color: ${(props) => (props.isFalse ? '#fff' : '#000')} ;
-    box-shadow: ${(props) => (props.isFalse ? '' : '0px 0px 5px rgba(0, 0, 0, 0.9) inset;')} ;;
+    /* box-shadow: ${(props) => (props.isFalse ? '' : '0px 0px 5px rgba(0, 0, 0, 0.9) inset;')} ;; */
 `
 export const SwitchButtonSign = styled.div<SwitchButtonProps>`
     height: 100%;
