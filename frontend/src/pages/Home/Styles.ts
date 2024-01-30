@@ -80,6 +80,7 @@ export const TitleForm = styled.h1`
     text-align: center;
     margin-bottom: 10px
 `
+
 export const ButtonLogin = styled.button`
     border-radius: 10px;
     background: #027333;
@@ -89,8 +90,16 @@ export const ButtonLogin = styled.button`
     font-size: 20px;
     text-align: center;
     color: #fff;
-    margin-top: 10px
-`
+    margin-top: 10px;
+
+    &:disabled {
+        background-color: #ccc; 
+        color: #666; 
+        cursor: not-allowed;
+    }
+`;
+
+
 export const Validation = styled.span`
     color: red;
     font: 400;

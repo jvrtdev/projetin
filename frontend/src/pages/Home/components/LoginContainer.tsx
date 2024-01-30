@@ -5,7 +5,7 @@ import Login from "./Login.tsx"
 
 
 export default function LoginContainer() {
-  const [loginOrSign, setLoginOrSign ] = useState<boolean>(false)
+  const [loginOrSign, setLoginOrSign] = useState<boolean>(false)
 
   function SetLogin() {
     setLoginOrSign(true)
@@ -16,24 +16,24 @@ export default function LoginContainer() {
 
   return (
     <div className="flex justify-center pt-10 flex-col items-center">
-        <S.SwitchContainer>
-            <S.SwitchButtonLogin isFalse={loginOrSign}
-            onClick={SetLogin}>
-              Login
-            </S.SwitchButtonLogin>
+      <S.SwitchContainer>
+        <S.SwitchButtonLogin isFalse={loginOrSign}
+          onClick={SetLogin}>
+          Login
+        </S.SwitchButtonLogin>
 
-            <S.SwitchButtonSign isFalse={loginOrSign}
-            onClick={SetSign}
-            >
-              Cadastro
-            </S.SwitchButtonSign>
-        </S.SwitchContainer>
+        <S.SwitchButtonSign isFalse={loginOrSign}
+          onClick={SetSign}
+        >
+          Cadastro
+        </S.SwitchButtonSign>
+      </S.SwitchContainer>
 
-          {/* componentes */}
-        <S.ContainerLogin>
-          {loginOrSign == false ? <Cadastro /> : <Login /> }
-        </S.ContainerLogin>
-        
+      {/* componentes */}
+      <S.ContainerLogin>
+        {loginOrSign == false ? <Cadastro /> : <Login />}
+      </S.ContainerLogin>
+
     </div>
   )
 }
