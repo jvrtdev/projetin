@@ -32,12 +32,13 @@ export default function Login() {
 
     const submitApi = async (data: any) => {
         try{
-            const response = await axios.get(`http://localhost:3000/user/${data.email}`, data);
+            const response = await axios.post("http://localhost:3000/login", data);
             console.log("Resposta da API", response.data)
-
+            alert("Usuario válido")
         }
         catch(error){
             console.error('Deu ruim menor', error)
+            alert("Email ou Senha incorretos")
         }
     }
 
@@ -60,7 +61,7 @@ export default function Login() {
             />
             <S.Validation>{errors?.password?.message}</S.Validation>
 
-            <S.ButtonLogin type="submit">Entrar</S.ButtonLogin>
+            <S.ButtonLogin type="submit" disabled={!watch("email") || !watch("password")}>Entrar</S.ButtonLogin>
         </S.FormArea>
     )
 }
