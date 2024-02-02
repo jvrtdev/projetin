@@ -15,6 +15,8 @@ app.get('/user/:email', UserController.show)
 
 app.post('/user', UserController.store)
 
+app.post('/login', UserController.login)
+
 app.put('/user/:email', UserController.update)
 
 app.delete('user/:email', UserController.delete)

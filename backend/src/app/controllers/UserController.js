@@ -23,6 +23,29 @@ class UserController {
                 res.status(404).json({'error': `${error}`})
             }else{
                 res.status(200).json(result)
+                if(result == req.body){
+                    res.status(200).json('User true')
+                }
+            }
+        })
+
+    }
+    login(req, res) {
+        const {email, password} = req.body;
+        const sql = "SELECT * FROM usuarios WHERE email=? AND password=?";
+        conexao.query(sql, [email, password], (error, result) => {
+            if(error){
+                console.log(error);
+                res.status(404).json({'error': `${error}`})
+            }else{
+                if(result != ''){
+                    res.status(200).json({
+                    "UserData": req.body,
+                    "DbData": result
+                    })
+                }else{
+                    res.status(401).json({"Usuario não encontrado":"Verifique o email ou a Senha"})
+                }
             }
         })
 
