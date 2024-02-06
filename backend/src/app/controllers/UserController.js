@@ -1,9 +1,8 @@
 import conexao from "../database/connection.js";
 import bcrypt from 'bcrypt';
 
-
-    
-//falta implementar isso jogando a senha para o banco de dados no metodo store
+//metodo login
+//precisa criar uma lógica para resgatar a senha do banco de dados incriptada e validar com a do user
 
 class UserController {
     index(req, res) {
