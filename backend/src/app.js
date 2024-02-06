@@ -15,7 +15,7 @@ app.get('/user/:email', UserController.show)
 
 app.post('/user', UserController.store)
 
-app.post('/login', UserController.login)
+app.post('/login', await UserController.login)
 
 app.put('/user/:email', UserController.update)
 
