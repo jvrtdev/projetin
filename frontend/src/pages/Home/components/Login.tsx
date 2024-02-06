@@ -33,11 +33,11 @@ export default function Login() {
     const submitApi = async (data: any) => {
         try{
             const response = await axios.post("http://localhost:3000/login", data);
-            console.log("Resposta da API", response.data)
+            console.log(response.data)
             alert("Usuario válido")
         }
         catch(error){
-            console.error('Deu ruim menor', error)
+            console.error(error)
             alert("Email ou Senha incorretos")
         }
     }
