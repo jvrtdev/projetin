@@ -1,9 +1,13 @@
 import conexao from "../database/connection.js";
 import bcrypt from 'bcrypt';
 
-//metodo login
-//precisa criar uma lógica para resgatar a senha do banco de dados incriptada e validar com a do user
-
+//function create hashPassword
+    const CreateHash = (password) => {
+        const saltRounds = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(password, saltRounds)
+        return hash
+    }
+   
 class UserController {
     index(req, res) {
         const sql = "SELECT * FROM usuarios;";
@@ -34,30 +38,32 @@ class UserController {
 
     }
     async login(req, res) {
+    try{
         const {email, password} = req.body;
         const sql = "SELECT * FROM usuarios WHERE email=?;";
-                conexao.query(sql, email, async (error, result) => {
-                    if(error){
-                        console.log(error);
-                        res.status(404).json({'error': `${error}`})
+            conexao.query(sql, email, async (error, result) => {
+                if(error){
+                    console.log(error);
+                    res.status(404).json({'error': `${error}`})
+                }
+                if(result.length > 0){
+                    const hashFromDb = result[0].password;
+
+                    const passwordMatch = await bcrypt.compare(password, hashFromDb)
+                    if(passwordMatch){
+                        res.status(200).json({"Status" : "Login bem-sucedido"})
                     }else{
-                       await bcrypt.compare(password, result.password)
-                        .then((match) => {
-                            if(match){
-                                res.status(200).json({
-                                "UserData": req.body,
-                                "DbData": result,
-                                "Senha correta" : "true"
-                                })
-                            }else{
-                                res.status(401).json({"Usuario não encontrado": error })
-                            }
-                        })
-                        .catch((error) => {
-                            res.status(400).send(result.password)
-                        })
+                        res.status(401).json({"Status" : "Senha incorreta"})
                     }
-                })
+
+                }else{
+                    res.status(200).json({"Status" : "Usuário não encontrado"})
+                }
+            })
+        }
+        catch(error){
+            res.status(500).json({"Erro": "Erro interno no servidor"})
+        }
     }
 
     store(req, res) {
@@ -104,8 +110,6 @@ class UserController {
             }
         })
     }
-
-
 }
 
 export default new UserController
