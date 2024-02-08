@@ -4,6 +4,9 @@ import * as yup from 'yup';
 import axios from "axios";
 import { json } from "react-router-dom";
 
+
+
+
 interface MyFormValues {
   login: string;
   password: string;
@@ -22,6 +25,8 @@ export default function App() {
   axios.post('http://localhost:3000/user', JSON.stringify(data))
   .then((response) => console.log(response) )
   .catch((error) => console.error('Deu ruim menor', error))
+
+
   return (
     <div>
         <h1>Login</h1>
@@ -47,6 +52,7 @@ export default function App() {
           </Form>
 
         </Formik>
+       
     </div>
   )
 }

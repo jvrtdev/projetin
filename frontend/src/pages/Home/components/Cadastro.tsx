@@ -7,7 +7,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { object, string } from "yup";
 import { useState } from "react";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
-
+import { toast } from 'react-toastify';
+import { ToastContainer  , Flip} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface SchemaType {
     email: string;
     password: string;
@@ -37,10 +39,11 @@ export default function Cadastro() {
         try {
             const response = await axios.post('http://localhost:3000/user', data);
             console.log("Resposta da API", response.data)
-
+            toast.success("Cadastro realizado com sucesso")
         }
         catch (error) {
             console.error('Deu ruim menor', error)
+            toast.error("Credenciais invalidas")
         }
     }
 
@@ -52,6 +55,7 @@ export default function Cadastro() {
 
     return (
         <S.FormArea onSubmit={onSubmit(submitApi)}>
+            
             <S.TitleForm>Cadastro</S.TitleForm>
 
             <S.TextHello>Email</S.TextHello>
@@ -83,12 +87,23 @@ export default function Cadastro() {
         >
           {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
         </button>
+        <ToastContainer  
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnFocusLoss
+        pauseOnHover
+        transition={Flip}
+    />
+
       </div>
 
 
             <S.Validation>{errors?.password?.message}</S.Validation>
 
             <S.ButtonLogin type="submit" disabled={!watch("email") || !watch("password")}  >Entrar</S.ButtonLogin>
+
         </S.FormArea>
     )
 }

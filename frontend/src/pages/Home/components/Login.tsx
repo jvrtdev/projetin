@@ -8,6 +8,9 @@ import { object, string } from "yup";
 // icons and useState
 import { useState } from "react";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
+import { toast } from 'react-toastify';
+import { ToastContainer  , Flip} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface SchemaType{
     email: string;
     password:string;
@@ -36,11 +39,11 @@ export default function Login() {
         try{
             const response = await axios.post("http://localhost:3000/login", data);
             console.log(response.data)
-            alert("Usuario válido")
+            toast.success("Login realizado com sucesso")
         }
         catch(error){
             console.error(error)
-            alert("Email ou Senha incorretos")
+            toast.error("Credenciais invalidas")
         }
     }
 
@@ -82,6 +85,15 @@ export default function Login() {
         >
           {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
         </button>
+        <ToastContainer  
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnFocusLoss
+        pauseOnHover
+        transition={Flip}
+    />
       </div>
 
 
