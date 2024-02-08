@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 //yup
 import { object, string } from "yup";
+import { useState } from "react";
+import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 
 interface SchemaType {
     email: string;
@@ -23,6 +25,7 @@ const schema = object<SchemaType>({
 })
 
 export default function Cadastro() {
+    const [showPassword, setShowPassword] = useState<boolean>(false)
 
     interface FormInput {
         email: string;
@@ -41,6 +44,12 @@ export default function Cadastro() {
         }
     }
 
+   
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+
     return (
         <S.FormArea onSubmit={onSubmit(submitApi)}>
             <S.TitleForm>Cadastro</S.TitleForm>
@@ -54,10 +63,29 @@ export default function Cadastro() {
             <S.Validation>{errors?.email?.message}</S.Validation>
             <S.TextHello>Senha</S.TextHello>
 
-            <S.InputLogin
-                type="password"
-                {...register("password")}
-            />
+            <div style={{ position: 'relative' }}>
+        <S.InputLogin
+          type={showPassword ? 'text' : 'password'}
+          {...register('password')}
+        />
+        <button
+          type="button"
+          onClick={togglePasswordVisibility}
+          style={{
+            position: 'absolute',
+            right: '10px',
+            top: '50%',
+            transform: 'translateY(-75%)',
+            border: 'none',
+            background: 'transparent',
+            cursor: 'pointer',
+          }}
+        >
+          {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+        </button>
+      </div>
+
+
             <S.Validation>{errors?.password?.message}</S.Validation>
 
             <S.ButtonLogin type="submit" disabled={!watch("email") || !watch("password")}  >Entrar</S.ButtonLogin>
