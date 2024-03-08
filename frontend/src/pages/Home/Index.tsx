@@ -1,6 +1,6 @@
-import Header from "./components/Header/Header";
-import HelloContainer from "./components/HelloContainer";
-import OrangeContainer from "./components/OrangeContainer";
+import Header from "../../components/Header/Header";
+import HelloContainer from "../../components/HelloContainer";
+import OrangeContainer from "../../components/OrangeContainer/OrangeContainer";
 
 
 export default function Home() {

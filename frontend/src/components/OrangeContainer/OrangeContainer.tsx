@@ -1,6 +1,5 @@
-import React from 'react'
-import * as S from "../Styles.ts"
-import LoginContainer from './LoginContainer.tsx'
+import * as S from './Styles.ts'
+import LoginContainer from '../LoginContainer/LoginContainer.tsx'
 
 export default function OrangeContainer() {
   return (

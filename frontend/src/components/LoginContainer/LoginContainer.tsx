@@ -1,7 +1,7 @@
 import { useState } from "react"
-import * as S from "../Styles.ts"
-import Cadastro from "./Cadastro.tsx"
-import Login from "./Login.tsx"
+import * as S from "./Styles.ts"
+import Cadastro from "../Cadastro/Cadastro.tsx"
+import Login from "../Login/Login.tsx"
 
 
 export default function LoginContainer() {

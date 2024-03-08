@@ -1,4 +1,4 @@
-import * as S from "../Styles.ts"
+import * as S from "./Styles.ts"
 import axios from "axios";
 //react hook form
 import { useForm } from "react-hook-form";
