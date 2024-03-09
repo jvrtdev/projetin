@@ -1,19 +1,64 @@
 import { FaHome, FaVideo, FaBell, FaPaw} from "react-icons/fa";
 import { FaCircleUser } from "react-icons/fa6";
 import { TiMessages } from "react-icons/ti";
-import { Link } from "react-router-dom";
+import Icon from "../Icon";
+
 
 const Header = () => {
  return (
     <>
    <header className="bg-white flex items-center m-4 justify-around p-2">
-     <img src="../../../../../public/logo.png" alt="Logo-petConnect" className="w-40 h-auto" />
+     <img src="/logo.png" alt="Logo-petConnect" className="w-40 h-auto" />
      <input
        type="text"
        placeholder="O que você está procurando?"
        className="bg-gray-200 text-black p-2 rounded-full w-[30%] placeholder:text-black"
      />
      <div className="flex items-center space-x-5 m-5">
+        <Icon 
+        title="Home"
+        icon={<FaHome />}
+        href="/"
+        />
+
+        <Icon 
+        title="Mensagens"
+        icon={<TiMessages />}
+        href="/"
+        />
+
+        <Icon 
+        title="Mídia"
+        icon={<FaVideo />}
+        href="/"
+        />
+        
+        <Icon 
+        title="Notificações"
+        icon={<FaBell />}
+        href="/"
+        />
+
+        <Icon 
+        title="Adoção"
+        icon={<FaPaw />}
+        href="/"
+        />
+
+        <Icon 
+        title="Perfil"
+        icon={<FaCircleUser />}
+        href="/"
+        />
+     </div>
+   </header>
+    </>
+ );
+};
+
+export default Header;
+
+/*
        <Link to=""  className="hover:scale-105 transition-transform duration-300 ease-in-out transform origin-center hover:text-verde" >
          <FaHome className="text-2xl ml-2"  />
          <span className="text-sm">Home</span>
@@ -38,10 +83,4 @@ const Header = () => {
          <FaCircleUser  className="text-2xl ml-1" />
          <span className="text-sm">Perfil</span>
        </Link>
-     </div>
-   </header>
-    </>
- );
-};
-
-export default Header;
+*/
