@@ -1,7 +1,5 @@
-import { FaHome, FaVideo, FaBell, FaPaw} from "react-icons/fa";
-import { FaCircleUser } from "react-icons/fa6";
-import { TiMessages } from "react-icons/ti";
 import Icon from "../Icon";
+
 
 
 const Header = () => {
@@ -15,41 +13,7 @@ const Header = () => {
        className="bg-gray-200 text-black p-2 rounded-full w-[30%] placeholder:text-black"
      />
      <div className="flex items-center space-x-5 m-5">
-        <Icon 
-        title="Home"
-        icon={<FaHome />}
-        href="/"
-        />
-
-        <Icon 
-        title="Mensagens"
-        icon={<TiMessages />}
-        href="/"
-        />
-
-        <Icon 
-        title="Mídia"
-        icon={<FaVideo />}
-        href="/"
-        />
-        
-        <Icon 
-        title="Notificações"
-        icon={<FaBell />}
-        href="/"
-        />
-
-        <Icon 
-        title="Adoção"
-        icon={<FaPaw />}
-        href="/"
-        />
-
-        <Icon 
-        title="Perfil"
-        icon={<FaCircleUser />}
-        href="/"
-        />
+        <Icon />
      </div>
    </header>
     </>
