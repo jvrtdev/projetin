@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
     const CreateHash = (password) => {
         const saltRounds = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, saltRounds)
-        return hash
+        return hash 
     }
    
 class UserController {
@@ -69,8 +69,15 @@ class UserController {
     store(req, res) {
         const data = {
             email: req.body.email,
-            password: CreateHash(req.body.password)
+            password: CreateHash(req.body.password),
+            username: req.body.username,
+            name: req.body.name,
+            coverImg: req.body.coverImg,
+            profileImg: req.body.profileImg,
+            city: req.body.city,
+            website: req.body.website
         };
+        const { email, password } = req.body
         const sql = "INSERT INTO usuarios SET ?;";
         conexao.query(sql, data, (error, result) => {
             if(error){

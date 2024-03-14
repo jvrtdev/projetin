@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import UserController from './app/controllers/UserController.js';
+import userRoutes from './app/routes/users.js';
+import postRoutes from './app/routes/posts.js';
+
 
 const app = express();
 
@@ -9,16 +12,10 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 
-app.get('/user', UserController.index)
+//routes
 
-app.get('/user/:email', UserController.show)
+app.use('/api', userRoutes )
+app.use('/api', postRoutes)
 
-app.post('/user', UserController.store)
-
-app.post('/login', await UserController.login)
-
-app.put('/user/:email', UserController.update)
-
-app.delete('user/:email', UserController.delete)
 
 export default app
